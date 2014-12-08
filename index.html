@@ -1,11 +1,38 @@
+<!DOCTYPE html>
 <html>
-
-  <head>
-    <title>This is yet another test site that I wrote in simple html... Yay! </title>
-  </head>
-
-
-  <body>
-  <h1>It works!</h1>
-  </body>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>Home</title>
+        <meta name="description" content="The webpage created in the lab session of 205CDE week4, continuing the project of week3. This page does not have an external CSS file, but just uses inline and internal styles only!">
+        
+        <style type="text/css">
+            body {
+                background-color: khaki;
+                
+                }
+            ul {
+                font-family: "Helvetica";
+                font-size: 20px;
+                }
+            a {
+                text-decoration: none;
+                color: DarkSlateBlue;
+                }
+        </style>
+    </head>
+    <body>
+        <h1 style="color:dodgerblue; font-size: 28pt; position: absolute; right: 90px; width: 350px;">Hello, this a list page</h1>
+        <br>
+        <ul>
+            
+            <li><a href="page1.html">Page 1</a></li>
+            <li><a href="page2.html">Page 2</a></li>
+            <li><a href="https://www.google.co.uk" target="_blank" style="text-decoration: underline; text-transform:uppercase">Google (opens in a new window)</a></li>
+        </ul>
+       
+        <footer>
+            <a href="http://validator.w3.org/check?uri=referer" target="_blank" ><img src="images/html5_valid.png" alt="the html5 valid logo" /> </a>
+        </footer>
+    </body>
 </html>
