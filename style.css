@@ -27,7 +27,7 @@ body {
 header {
     width: 799px;
     height: 64px;
-    background-color: rgba(176, 176, 176, 0.19); /*previously used this, dont like it #83CCFF*/
+    background-color: rgba(176, 176, 176, 0.19);
 }
 #logo {
     width: 98px;
@@ -46,7 +46,6 @@ nav{
 }
 #navigation {
     float: left;
-    align-self: clear:both;
     margin-left: auto;
     margin-right: auto;
 /*
@@ -73,7 +72,6 @@ nav ul li {
     margin-left: 5px;
     margin-right: 5px;
     line-height:64px;
-    text-align: middle;
 }
 nav ul li:hover {
     background-color:rgba(176, 176, 176, 0.35);
@@ -91,10 +89,21 @@ footer {
 footer a:link, footer a:visited { 
 	margin-right: 20px; 
 	}
+footer ul {
+    margin-left:10px;
+    float:left;
+}
+footer ul li{
+    display: inline-block;
+    list-style-type: none;
+}
+footer ul li img{
+    height:40px;
+}
 ul {
-    font-family: "Helvetica";
     font-size: 20px;
-    }
+    font-weight: bold;
+}
 a {
     text-decoration: none;
     font-weight: bold; 
@@ -104,14 +113,10 @@ a:visited {
     text-decoration: none;
     color: #003399 ;
 }
-/*a:hover {
-    color: rgba(165, 203, 255, 0.86) ;
-}*/
 .content {
     width: 95%;
     margin: auto;
 }
-
 .content img {
     margin: 20px;
     width: 300px;
