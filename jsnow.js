@@ -1,166 +1,91 @@
- // jSnow, a jQuery Plugin v1.1.mod2  
- // Licensed under GPL licenses.  
- // Copyright (C) 2009 Nikos "DuMmWiaM" Kontis, dummwiam@gmail.com  
- //   
- // Modified 2009~
- 
- // Updated in 2009 by Shadowmint ()
- // Updated in 2010 by Serban Boanca ()
- 
- (function ($) {  
-   $.fn.jSnow = function (h) {  
-     var j = $.extend({},  
-     $.fn.jSnow.defaults, h);  
-     var k, WIN_HEIGHT;  
-     var l = j.flakes;  
-     var m = j.flakeCode;  
-     var n = j.flakeColor;  
-     var o = j.flakeMinSize;  
-     var p = j.flakeMaxSize;  
-     var q = j.fallingSpeedMin;  
-     var r = j.fallingSpeedMax;  
-     var s = j.interval;  
-     var t = j.zIndex;
-     var vs = j.vSize;
-     var fa = j.fadeAway;
-     var fs = j.followScroll;
-     setWaH();  
-     
-     var useGif = false;  
-     if ($.browser.msie && (parseFloat($.browser.version) < 8))  
-       useGif = true;  
-     if ($.browser.msie && (parseFloat($.browser.version) < 8) && t == "auto")  
-       t = 0;  
-     var u = $("<div \/>");  
-     u.css({  
-       width: k + "px",  
-       height: 1,  
-       display: "block",  
-       overflow: "visible",  
-       position: "absolute",  
-       left: "1px",  
-       zIndex: t  
-     });
-     
-     if (fs) {
-       u.css('top',$("html").scrollTop() + 1 + "px");
-     } else {
-         u.css='1px';
-       }
-     
-     $("body").prepend(u).css({  
-       height: "100%"  
-     });  
-     $("html").css({  
-       "overflow-y": "scroll",  
-       "overflow-x": "hidden"  
-     });    var v = Array();  
-     generateFlake(l, false);  
-     setInterval(animateFlakes, s);  
-     window.onresize = setWaH;  
-     function setWaH() {  
-       k = $('body').width();
-       k -= 100;
-       if (!vs) {
-         WIN_HEIGHT = window.innerHeight || document.documentElement.clientHeight  
-         WIN_HEIGHT -= 50;
-       } else WIN_HEIGHT = vs;
-     };
-     if (fs) {
-       window.onscroll = function () {  
-         u.css({  
-           top: $("html").scrollTop() + "px"  
-         })  
-       };
-     }
-     function generateFlake(a, b) {  
-       a = a || 1;  
-       b = b || false;  
-       var i = 0;  
-       for (i = 0; i < a; i++) {  
-         var c = $("<span \/>");  
-         var d = o + Math.floor(Math.random() * p);  
-         var e = m[Math.floor(Math.random() * m.length)];  
-         if (e.indexOf(".gif") != -1 || e.indexOf(".png") != -1) {  
-           var f = new Image();  
-           if (useGif)  
-             e = e.replace("png", "gif");  
-           f.src = e;  
-           e = "<img src='" + e + "' alt='jSnowFlake'>"  
-         }  
-         c.html(e).css({  
-           color: n[Math.floor(Math.random() * n.length)],  
-           fontSize: d + "px",  
-           display: "block",  
-           position: "absolute",  
-           cursor: "default",  
-           "z-index": t  
-         });  
-         $(u).append(c);  
-         f_left = Math.floor(Math.random() * (k - c.width() - 50)) + 25;  
-         f_top = (b) ? -1 * c.height() : Math.floor(Math.random() * (WIN_HEIGHT - 50));  
-         var g = Math.floor(Math.random() * 90);  
-         jQuery.data(c, "posData", {  
-           top: f_top,  
-           left: f_left,  
-           rad: Math.random() * 50,  
-           i: Math.ceil(q + Math.random() * (r - q)),  
-           swingRange: g  
-         });  
-         c.css({  
-           top: f_top + "px",  
-           left: f_left + "px"  
-         });  
-         v.push(c)  
-       }  
-     };  
-     function animateFlakes() {  
-       var i = 0;  
-       for (i = v.length - 1; i >= 0; i--) {  
-         var f = v[i];  
-         var a = jQuery.data(f, "posData");  
-         a.top += a.i;  
-         var b = Number();  
-         b = Math.cos((a.rad / 180) * Math.PI);  
-         a.rad += 2;  
-         var X = a.left - b * a.swingRange;
-         
-         if (fa) {
-           op=(WIN_HEIGHT - a.top < 100) ? ((WIN_HEIGHT - a.top) / 100) : 1;
-           f.css('opacity',op);
-         }
-         
-         f.css({  
-           top: a.top + "px",
-           left: X + "px"
-         });
-         if (a.top > WIN_HEIGHT) {  
-           f.remove();  
-           jQuery.removeData(f);  
-           v.splice(i, 1);  
-           generateFlake(1, true)  
-         } 
-		 if (a.left > k ) {
-           f.remove();  
-           jQuery.removeData(f);  
-           v.splice(i, 1);  
-           generateFlake(1, true)  
-		 }
+window.onload = function(){
+	//canvas init
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	
+	//canvas dimensions
+	var W = window.innerWidth;
+	var H = window.innerHeight;
+	canvas.width = W;
+	canvas.height = H;
+	
+	//snowflake particles
+	var mp = 25; //max particles
+	var particles = [];
+	for(var i = 0; i < mp; i++)
+	{
+		particles.push({
+			x: Math.random()*W, //x-coordinate
+			y: Math.random()*H, //y-coordinate
+			r: Math.random()*4+1, //radius
+			d: Math.random()*mp //density
+		})
+	}
+	
+	//Lets draw the flakes
+	function draw()
+	{
+		ctx.clearRect(0, 0, W, H);
+		
+		ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+		ctx.beginPath();
+		for(var i = 0; i < mp; i++)
+		{
+			var p = particles[i];
+			ctx.moveTo(p.x, p.y);
+			ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+		}
+		ctx.fill();
+		update();
+	}
+	
+	//Function to move the snowflakes
+	//angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
+	var angle = 0;
+	function update()
+	{
+		angle += 0.01;
+		for(var i = 0; i < mp; i++)
+		{
+			var p = particles[i];
+			//Updating X and Y coordinates
+			//We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
+			//Every particle has its own density which can be used to make the downward movement different for each flake
+			//Lets make it more random by adding in the radius
+			p.y += Math.cos(angle+p.d) + 1 + p.r/2;
+			p.x += Math.sin(angle) * 2;
+			
+			//Sending flakes back from the top when it exits
+			//Lets make it a bit more organic and let flakes enter from the left and right also.
+			if(p.x > W+5 || p.x < -5 || p.y > H)
+			{
+				if(i%3 > 0) //66.67% of the flakes
+				{
+					particles[i] = {x: Math.random()*W, y: -10, r: p.r, d: p.d};
+				}
+				else
+				{
+					//If the flake is exitting from the right
+					if(Math.sin(angle) > 0)
+					{
+						//Enter from the left
+						particles[i] = {x: -5, y: Math.random()*H, r: p.r, d: p.d};
+					}
+					else
+					{
+						//Enter from the right
+						particles[i] = {x: W+5, y: Math.random()*H, r: p.r, d: p.d};
+					}
+				}
+			}
+		}
+	}
+	
+	//animation loop
+	setInterval(draw, 33);
+}
 
-       }  
-     };  
-     return this  
-   };  
-   $.fn.jSnow.defaults = {  
-     flakes: 30,  
-     fallingSpeedMin: 1,  
-     fallingSpeedMax: 3,  
-     flakeMaxSize: 20,  
-     flakeMinSize: 10,  
-     flakeCode: ["&bull;"],  
-     flakeColor: ["#fff"],  
-     zIndex: "auto",  
-     interval: 50  
-   }  
- })(jQuery);
-   
+
+
+
+
