@@ -7,6 +7,51 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        
+        <!-- mark tyer's gist https://gist.github.com/marktyers/d9cf82f8185ff9eff768 -->
+        <script>
+        	window.onload = function() {
+            console.log('onLoad');
+            var form = document.forms.register;
+            form.onsubmit = function() {
+                console.log('onSubmit');
+                if (form.name.value.length == 0) {
+                    console.log('empty field');
+                    document.getElementById('nameError').innerHTML = 'Name field empty'
+                    return false;
+                } else {
+                    document.getElementById('nameError').innerHTML = ''
+                } // if
+                return true;
+            } // onSubmit
+
+            form.name.onblur = function() {
+                console.log('onBlur');
+                if (form.name.value.length == 0) {
+                    console.log('empty field');
+                    document.getElementById('nameError').innerHTML = 'Name field empty';
+                    return false;
+                } else {
+                    document.getElementById('nameError').innerHTML = '';
+                } // if
+            } // onBlur
+
+            form.phone.onkeyup = function() {
+                console.log('onKeyUp');
+                form.phone.value = form.phone.value.replace(' ', '');
+                if (form.phone.value.length == 0 || isNaN(form.phone.value)) {
+                    console.log('failed validation');
+                    document.getElementById('phoneError').innerHTML = 'Invalid phone number';
+                } else {
+                    document.getElementById('phoneError').innerHTML = '';
+                }
+            } // onKeyUp
+
+            } // onLoad
+	    </script>
+        
+        <!-- mark tyer's gist-->
+
     </head>
 
     <body>
@@ -28,6 +73,15 @@
                     </div>
                 </nav>
             </header>
+            <div class="content">
+                	<form name="register" method="post" action="http://www.google.com/">
+                        <p>Name:<br><input type="text" name="name"/><span id="nameError"></span></p>
+                        <p>Phone:<br><input type="text" name="phone"/><span id="phoneError"></span></p>
+                        <p><input type="submit"/></p>
+                    </form>
+            </div>
+            
+            
             <div class="content" itemscope itemtype="http://schema.org/City">
                     <div class="imgright">
                         <img itemprop="photo" class="zoom" src="images/coventry-index.jpg" alt="Coventry city photo. Showing a panoramic view of the cathedral and city centre."><h6>Click to zoom</h6>
@@ -36,6 +90,8 @@
                 <p>Welcome to <span itemprop="name">Coventry</span>. <span itemprop="description">Our city and region is rich in culture, history and heritage and has made a name for itself through the centuries, captivating visitors from right across the globe with the finest selection of historic medieval buildings and internationally recognisable family friendly attractions.</span> From castles and cathedrals to motor museums and art galleries we have legends and stories that are unrivalled and unmatched. Just an hour from London by train and twenty minutes from central Birmingham, we are truly at the heart of the UK. Whether you are staying for a week, a few short days or here for a few hours, we have something for everyone.</p>
                 </article>
             </div>
+            
+            
             <footer>
                 <div id="foo">
                     <p style="line-height:40px;float:left;margin-left:10px;">Follow us!</p>
