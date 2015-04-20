@@ -26,9 +26,31 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        template = JINJA_ENVIRONMENT.get_template('main.html')
+        self.response.write(template.render())
+
+class history(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('base.html')
+        self.response.write(template.render())
+class contact(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('base.html')
+        self.response.write(template.render())
+class university(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('base.html')
+        self.response.write(template.render())
+class places(webapp2.RequestHandler):
+    def get(self):
         template = JINJA_ENVIRONMENT.get_template('base.html')
         self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/history', history),
+    ('/contact', contact),
+    ('/university', university),
+    ('/places', places)
+
 ], debug=True)
