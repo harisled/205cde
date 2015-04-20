@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      {% block head %}
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="/static/style.css" />
+        <title>{% block title %}{% endblock %} - Discover Coventry</title>
+
+        <meta name="description" content="Discover the city of Coventry! A simple guide to the city. Created on 2014.">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+      {% endblock %}
+    </head>
+
+    <body>
+      <div id="page">
+
+      {% include 'header.html' %}
+      {% include 'content.html' %}
+      {% if True %}
+      <h1>WOOHOO</h1>
+      {% endif %}
+      {% include 'footer.html' %}
+
+    </div>
+    </body>
+</html>

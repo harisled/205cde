@@ -1,4 +1,4 @@
-* { 
+* {
     margin: 0;
     padding: 0;
 }
@@ -9,12 +9,12 @@
   font-weight: 400;
   src: local('Ubuntu'), url(http://fonts.gstatic.com/s/ubuntu/v7/sVvvcJDRTINJla2R4XwPVevvDin1pK8aKteLpeZ5c0A.ttf) format('truetype');
 }
-body { 
+body {
 	font-family: Ubuntu, Verdana, sans-serif;
 	line-height: 1.88889;
-	color: #555753; 
-	background: WhiteSmoke; 
-	margin: 0; 
+	color: #555753;
+	background: WhiteSmoke;
+	margin: 0;
 	padding: 0;
 }
 #page {
@@ -52,14 +52,32 @@ nav{
     width: 100%;
 */
 }
-#foo {
+#footer {
     color:black;
     margin-left: auto;
     margin-right: auto;
     width: 99%;
     background-color: #B0B0B0;
     align-items: center;
+    text-align: center;
 }
+
+#footer a:link, #footer a:visited {
+	margin-right: 20px;
+	}
+
+#footer ul {
+    margin-left:10px;
+    float:left;
+}
+#footer ul li{
+    display: inline-block;
+    list-style-type: none;
+}
+#footer ul li img{
+    height:40px;
+}
+
 nav{
     height:64px;
 }
@@ -83,30 +101,14 @@ nav ul {
     padding: 0;
 */
 }
-footer { 
-	text-align: center; 
-	}
-footer a:link, footer a:visited { 
-	margin-right: 20px; 
-	}
-footer ul {
-    margin-left:10px;
-    float:left;
-}
-footer ul li{
-    display: inline-block;
-    list-style-type: none;
-}
-footer ul li img{
-    height:40px;
-}
+
 ul {
     font-size: 20px;
     font-weight: bold;
 }
 a {
     text-decoration: none;
-    font-weight: bold; 
+    font-weight: bold;
     color: #003399;
     }
 a:visited {
