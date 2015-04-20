@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}History{% endblock %}
+
+{% block bodycontent %}
+<div class="content">
+    <div class="imgright"><img class="zoom" style="width:200px;" src="/static/cov-history.jpg" alt="one of the three cathedrals"><h6>Click to zoom</h6></div>
+    <article><h1>History</h1><p>From its humble beginnings as a settlement around a Saxon nunnery c. AD 700, Coventry grew to become one of the most important cities in England during the Middle Ages due to its booming cloth and textiles trade. The city was noted for its part in the English Civil War, and later became an important industrial city during the 19th and 20th centuries, becoming the centre of the British bicycle and later motor industry. The devastating Blitz in 1940 destroyed most of the city centre, and saw its rebuilding during the 1950s and 60s. The motor industry slumped during the 1970s and 80s, and Coventry saw high unemployment.</p>
+        <p><h2>City walls</h2>
+<p>Swanswell Gate with one of the few surviving sections of Coventry's city walls Reflecting Coventry's commercial and strategic importance, in 1355 construction began on city walls, a vast and expensive undertaking funded by local tolls and taxes, and for which King Richard II allowed stone to be quarried from his park in Cheylesmore. The building started at New Gate and was initially finished in around 1400, but much repair work and re-routing was subsequently carried out and its final form was not completed until 1534. They were an impressive feature; measuring nearly 2.2 miles (3.5 km) around and consisting of two red sandstone walls infilled with rubble over 8 feet (2.4 m) thick and 12 feet (3.7 m) high, with 32 towers including 12 gatehouses. With its walls, Coventry was described as being the best-defended city in England outside London.</p>
+    </article>
+</div>
+
+<script>
+    $( '.zoom' ).click(function() {
+      $( '.imgright' ).switchClass( "imgright", "imgrightzoom", 1000, "easeInOutQuad" );
+        var txt = $(this).parent().children("h6");
+        txt.toggle();
+        $( ".imgrightzoom" ).switchClass( "imgrightzoom", "imgright", 1000, "easeInOutQuad" );
+    });
+</script>
+
+{% endblock %}

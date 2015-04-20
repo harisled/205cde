@@ -31,19 +31,19 @@ class MainHandler(webapp2.RequestHandler):
 
 class history(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('base.html')
+        template = JINJA_ENVIRONMENT.get_template('history.html')
         self.response.write(template.render())
 class contact(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('base.html')
+        template = JINJA_ENVIRONMENT.get_template('contact.html')
         self.response.write(template.render())
 class university(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('base.html')
+        template = JINJA_ENVIRONMENT.get_template('university.html')
         self.response.write(template.render())
 class places(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('base.html')
+        template = JINJA_ENVIRONMENT.get_template('places.html')
         self.response.write(template.render())
 
 app = webapp2.WSGIApplication([

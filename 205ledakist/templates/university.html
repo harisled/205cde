@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Main page{% endblock %}
+
+{% block bodycontent %}
+<div class="content">
+    <div><img itemprop="logo" src="/static/cov-uni.png" alt="Coventry University logo" style="float:left;width:120px;"></div>
+    <article><h1><span itemprop="name">Coventry University</span></h1>
+        <p><span itemprop="description">Coventry University is a public research university in the city of <span itemprop="foundingLocation">Coventry, England</span>. It was established as a university through the Further and Higher Education Act <span itemprop="foundingDate">1992</span>, and was formerly known as Lanchester Polytechnic until 1987 and Coventry Polytechnic until it was awarded university status.</span></p><div class="imgright"><img class="zoom" src="/static/ecb.jpg" alt="A photo of the Engineering and Computing Building" style="width:300px;"><h6>Click to zoom</h6></div>
+        <p>With more than 27,000 students (as of 2013), Coventry University is the larger of the two universities in the city, the other being the University of Warwick. It has two campuses: one in the city centre of Coventry where a large majority of the university operates, and one in London. The campus in Coventry is currently undergoing a £160m redevelopment programme. The university comprises four faculties and one school, and manages a number of commercial subsidiaries that provide business services to local and national organisations.</p>
+        <p>The university is a member of the Association of Commonwealth Universities, University Alliance and Universities UK.</p>
+
+        <video width="760" height="500" controls>
+            <source src="/static/vid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </article>
+</div>
+<script>
+    $( '.zoom' ).click(function() {
+      $( '.imgright' ).switchClass( "imgright", "imgrightzoom", 1000, "easeInOutQuad" );
+        var txt = $(this).parent().children("h6");
+        txt.toggle();
+        $( ".imgrightzoom" ).switchClass( "imgrightzoom", "imgright", 1000, "easeInOutQuad" );
+    });
+</script>
+{% endblock %}

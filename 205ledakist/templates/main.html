@@ -3,10 +3,20 @@
 {% block title %}Main page{% endblock %}
 
 {% block bodycontent %}
-    <h2> App engine: about</h2>
-    <p>
-    Welcome to the site dedicated to learning
-    google app engine.
-    blah blah
-    </p>
+<div class="content" itemscope itemtype="http://schema.org/City">
+            <div class="imgright">
+                        <img itemprop="photo" class="zoom" src="/static/coventry-index.jpg" alt="Coventry city photo. Showing a panoramic view of the cathedral and city centre."><h6>Click to zoom</h6>
+                    </div>
+                <article><h1>Coventry City Guide</h1>
+                <p>Welcome to <span itemprop="name">Coventry</span>. <span itemprop="description">Our city and region is rich in culture, history and heritage and has made a name for itself through the centuries, captivating visitors from right across the globe with the finest selection of historic medieval buildings and internationally recognisable family friendly attractions.</span> From castles and cathedrals to motor museums and art galleries we have legends and stories that are unrivalled and unmatched. Just an hour from London by train and twenty minutes from central Birmingham, we are truly at the heart of the UK. Whether you are staying for a week, a few short days or here for a few hours, we have something for everyone.</p>
+                </article>
+            </div>
+            <script>
+                $( '.zoom' ).click(function() {
+                $( '.imgright' ).switchClass( "imgright", "imgrightzoom", 1000, "easeInOutQuad" );
+                var txt = $(this).parent().children("h6");
+                txt.toggle();
+                $( ".imgrightzoom" ).switchClass( "imgrightzoom", "imgright", 1000, "easeInOutQuad" );
+                });
+            </script>
 {% endblock %}
