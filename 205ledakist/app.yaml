@@ -5,8 +5,27 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+#mime definitions
+#image files
+- url: /static/(.*\.(bmp|gif|ico|jpeg|jpg|png))
+  static_files: static/\1
+  upload: static/(.*\.(bmp|gif|ico|jpeg|jpg|png))
+
+- url: /images/(.*\.(bmp|gif|ico|jpeg|jpg|png))
+  static_files: static/\1
+  upload: static/(.*\.(bmp|gif|ico|jpeg|jpg|png))
+#video
+- url: /static/(.*\.mp4)
+  mime_type: video/mp4
+  static_files: static/\1
+  upload: static/(.*\.mp4)
+#end of mime definitions
+
 - url: /static
   static_dir: static
+
+- url: /images
+  static_dir: images
 
 - url: /favicon\.ico
   static_files: favicon.ico
