@@ -12,6 +12,13 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /places.*
+  script: places.app
+
+- url: /admin/*
+  script: admin.app
+  login: admin
+
 - url: .*
   script: main.app
 

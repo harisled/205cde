@@ -24,29 +24,19 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 
-class MainHandler(webapp2.RequestHandler):
+class placesmain(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('main.html')
+        template = JINJA_ENVIRONMENT.get_template('places.html')
         self.response.write(template.render())
 
-class history(webapp2.RequestHandler):
+class places(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('history.html')
-        self.response.write(template.render())
-class contact(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('contact.html')
-        self.response.write(template.render())
-class university(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('university.html')
-        self.response.write(template.render())
-
+        # template = JINJA_ENVIRONMENT.get_template('history.html')
+        # self.response.write(template.render())
+        self.response.write('eleos')
 
 app = webapp2.WSGIApplication([
-    (r'/?', MainHandler),
-    (r'/history/?', history),
-    (r'/contact/?', contact),
-    (r'/university/?', university)
+    (r'/places/?', placesmain),
+    (r'/place/(.*)', places)
 
 ], debug=True)
