@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}{{placename}} {% endblock %}
+{% block title %}{{place.name}} {% endblock %}
 
 {% block bodycontent %}
 
+<h1>{{place.name}}</h1>
+
+<a href="{{place.href}}" alt="{{place.name}} url">This page</a>
+<a href="https://www.google.co.uk/maps/@{{place.location[0]}},{{place.location[1]}},15z"
+alt="map link" >Go to {{place.name}} on Google maps</a>
+
+<p>
+  <h2>By: {{place.author.identity}}:</h2>
+  {{place.content}}</p>
 
 {% endblock %}

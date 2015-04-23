@@ -35,31 +35,56 @@ class Author(ndb.Model): #code taken from lab examples
 
 class Place(ndb.Model): #code manipulated from lab examples
     """model for the place entries"""
+    name = ndb.StringProperty()
+    href = ndb.StringProperty(indexed=False)
     author = ndb.StructuredProperty(Author)
     content = ndb.StringProperty(indexed=False)
+    location = ndb.GeoPtProperty(lat=52.407117, lon=-1.508004) #Coventry defaults
+    #output should be: https://www.google.co.uk/maps/@52.407117,-1.508004,15z
     date = ndb.DateTimeProperty(auto_now_add=True)
 
 class placesmain(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            url = users.create_logout_url(self.request.uri)
-            url_linktext = 'Logout'
+            username = user.nickname()
+            userurl = users.create_logout_url(self.request.uri)
+            userurl_linktext = 'Logout'
         else:
-            url = users.create_login_url(self.request.uri)
-            url_linktext = 'Login'
+            username = "guest"
+            userurl = users.create_login_url(self.request.uri)
+            userurl_linktext = 'Login'
+        places_db = 'placeDB'
+        places_query = Place.query(places_key(places_db)).order(Place.name)
+        data = {'username':username, 'usrurl':userurl,
+        'usrtext':userurl_linktext, 'places':places_query}
         template = JINJA_ENVIRONMENT.get_template('places.html')
-        self.response.write(template.render())
+        self.response.write(template.render(data))
 
-class places(webapp2.RequestHandler):
-    def get(self):
-        # template = JINJA_ENVIRONMENT.get_template('history.html')
-        # self.response.write(template.render())
-        self.response.write('eleos')
+    def post(self,data):
+        
+
+class place(webapp2.RequestHandler):
+    def get(self, placename):
+        q = Place.query()
+        places = q.fetch()
+
+        #will try to find the specific place, or quit if not found
+        place = None
+        for i in places:
+            if i.name == placename:
+                place = i
+        if place = None:
+            self.response.write("<h1>not found</h1>")
+            return
+
+        data = {'place':place}
+        template = JINJA_ENVIRONMENT.get_template('place.html')
+        self.response.write(template.render(data))
 
 app = webapp2.WSGIApplication([
     (r'/places/?', placesmain),
-    (r'/place/(.*)', places),
+    (r'/place/(.*)', place),
     ('/up', upload.PhotoUploadFormHandler),
     ('/upload_photo', upload.PhotoUploadHandler)
 

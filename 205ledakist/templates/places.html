@@ -1,9 +1,30 @@
 {% extends "base.html" %}
 
-{% block title %}Places{% endblock %}
+{% block title %}List of Places{% endblock %}
 
 {% block bodycontent %}
 
-<h2>List of places in the city of Coventry</h2>
+<h2>Hello {{ username }}!!</h2>
 
+<a href="{{ usrur l}}">usrtext</a>
+
+<ul id="placelist">
+    {% for place in places %}
+        <li><a href="{{ place.href }}">{{ place.name }}</a></li>
+    {% endfor %}
+</ul>
+
+<div>
+  <h2>Add a new place</h2>
+  <form action="/" method="post">
+  <div>
+    <textarea name="name" rows"3" cols="60"></textarea><br>
+    <textarea name="location" rows"3" cols="60"></textarea><br>
+    <textarea name="content" rows"3" cols="60"></textarea><br>
+  </div>
+
+  <div><input type="submit" value="Submit"></div>
+
+  </form>
+</div>
 {% endblock %}
