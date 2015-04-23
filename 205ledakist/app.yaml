@@ -31,6 +31,12 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /up.*
+  script: places.app
+
+- url: /view.*
+  script: upload.app
+
 - url: /place.*
   script: places.app
 
